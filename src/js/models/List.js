@@ -1,0 +1,34 @@
+import ids from 'ids';
+export default class List {
+    constructor() {
+        this.items = [];
+    }
+
+
+    autoID(){
+
+        this.ids = new ids();
+        return this.ids;
+    }
+
+    addItem(count, unit, ingredient) {
+        const item = {
+            id: this.autoID(),
+            count,
+            unit,
+            ingredient
+        }
+        this.items.push(item);
+        return item;
+    }
+  
+    deleteItem(id) {
+        const index = this.items.findIndex(el => el.id === id);
+        
+        this.items.splice(index, 1);
+    }
+
+    updateCount(id, newCount) {
+        this.items.find(el => el.id === id).count = newCount;
+    }
+}
